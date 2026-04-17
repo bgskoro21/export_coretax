@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <menuitem id="export_coretax_ppn_Menu"
+                  parent="vit_efaktur.menu_vit_efaktur_keluaran"
+                  sequence="65"
+                  name="Export FP. Coretax"
+                  action="act_open_export_coretax_main"/>
+                  
+</odoo>

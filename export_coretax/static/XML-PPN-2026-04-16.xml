@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TaxInvoiceBulk xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="TaxInvoice.xsd">
+  <TIN>0021411038322000</TIN>
+  <ListOfTaxInvoice>
+    <TaxInvoice>
+      <TaxInvoiceDate>2025-12-01</TaxInvoiceDate>
+      <TaxInvoiceOpt>Normal</TaxInvoiceOpt>
+      <TrxCode>04</TrxCode>
+      <AddInfo />
+      <CustomDoc />
+      <RefDesc />
+      <FacilityStamp />
+      <SellerIDTKU>0021411038322000000000</SellerIDTKU>
+      <BuyerTin>1871036102650001</BuyerTin>
+      <BuyerDocument>TIN</BuyerDocument>
+      <BuyerCountry>IDN</BuyerCountry>
+      <BuyerDocumentNumber />
+      <BuyerName>ASNIZAR</BuyerName>
+      <BuyerAdress>PERUM BLORA INDAH BLOK C16 RT.002 KEL. SEGALA MIDER KEC. TKB  </BuyerAdress>
+      <BuyerEmail>-</BuyerEmail>
+      <BuyerIDTKU>1871036102650001000000</BuyerIDTKU>
+      <ListOfGoodService>
+        <GoodService>
+          <Opt>B</Opt>
+          <Code />
+          <Name>Rekening Listrik</Name>
+          <Unit>UM.0024</Unit>
+          <Price>2250.00</Price>
+          <Qty>1</Qty>
+          <TotalDiscount>0.00</TotalDiscount>
+          <TaxBase>2250.00</TaxBase>
+          <OtherTaxBase>2062.50</OtherTaxBase>
+          <VATRate>12</VATRate>
+          <VAT>247.50</VAT>
+          <STLGRate>0</STLGRate>
+          <STLG>0</STLG>
+        </GoodService>
+      </ListOfGoodService>
+    </TaxInvoice>
+  </ListOfTaxInvoice>
+</TaxInvoiceBulk>

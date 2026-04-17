@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="partner_efaktur_inherit" model="ir.ui.view">
+            <field name="name">res.partner_efaktur_inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="vit_efaktur.partner_efaktur"/>
+            <field name="arch" type="xml">
+                <field name="is_efaktur_exported" position='before'>
+                    <field name="buyer_id_type" />
+                    
+                    <field name="is_spesific_nitku"
+                         attrs="{'invisible': [('buyer_id_type', '=', 'npwp')]}" />
+                    
+                    <field name="specific_nitku" 
+                        attrs="{'invisible': [('is_spesific_nitku', '=', False)], 'required': [('is_spesific_nitku', '=', True)]}"/>
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>
+

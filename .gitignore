@@ -1,0 +1,59 @@
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+.eggs/
+
+# ========================
+# Odoo Specific
+# ========================
+# File yang digenerate Odoo
+*.pyc
+/static/description/icon.png.bak
+
+# Upload & attachment (jangan commit file user)
+/static/uploads/
+*.xml.bak
+
+# File export sementara (seperti yang kamu generate)
+/static/*.xml
+/static/*.csv
+/static/*.xlsx
+
+# ========================
+# Environment & Config
+# ========================
+.env
+.env.*
+*.cfg
+!__manifest__.py
+
+# ========================
+# IDE & Editor
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ========================
+# Log & Database
+# ========================
+*.log
+*.sql
+*.dump
+
+# ========================
+# Testing
+# ========================
+.coverage
+htmlcov/
+.pytest_cache/

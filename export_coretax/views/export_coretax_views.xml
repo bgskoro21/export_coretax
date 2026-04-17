@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ==================== VIEW ==================== -->
+        <record id="view_export_coretax_form" model="ir.ui.view">
+            <field name="name">export_coretax.export_efaktur.form</field>
+            <field name="model">export_coretax.export_efaktur</field>
+            <field name="arch" type="xml">
+                <form string="Export Faktur Pajak Keluaran (Coretax)">
+                    <sheet>
+
+                        <!-- JUDUL -->
+                        <div class="oe_title">
+                            <h1>Export Faktur Pajak Coretax</h1>
+                        </div>
+
+                        <!-- SECTION FILTER -->
+                        <group string="Filter Pencarian">
+                            <group>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                            <group>
+                                <field name="partner_id"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <div>
+                                <button string="Cari Faktur" 
+                                        name="action_search" 
+                                        type="object" 
+                                        class="btn-primary" 
+                                        style="margin-right: 10px;"/>
+                                
+                                <button string="Export XML Coretax" 
+                                        name="action_export" 
+                                        type="object" 
+                                        class="btn-primary" 
+                                        confirm="Yakin ingin mengexport semua faktur yang ditampilkan?"/>
+                            </div>
+                        </group>
+
+                        <separator/>
+
+                        <!-- TAB HASIL -->
+                        <notebook>
+
+                            <!-- TAB 1: FAKTUR SIAP EXPORT -->
+                            <page string="Faktur Siap Export">
+                                <field name="invoice_ids" readonly="1" nolabel="1">
+                                    <tree string="Faktur Siap Export">
+                                        <field name="number" string="No. Faktur"/>
+                                        <field name="partner_id" string="Customer"/>
+                                        <field name="date_invoice" string="Tgl. Faktur"/>
+                                        <field name="amount_untaxed"
+                                               string="DPP"
+                                               widget="monetary"/>
+                                        <field name="amount_tax"
+                                               string="PPN"
+                                               widget="monetary"/>
+                                        <field name="amount_total"
+                                               string="Total"
+                                               widget="monetary"/>
+                                        <field name="state" string="Status"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <!-- TAB 2: FAKTUR SUDAH DIEXPORT -->
+                            <page string="Sudah Diexport">
+
+                                <!-- Bagian atas: daftar semua yang sudah diexport (readonly) -->
+                                <separator string="Semua Faktur yang Sudah Diexport"/>
+                                <field name="exported_invoice_ids" readonly="1" nolabel="1">
+                                    <tree string="Faktur Sudah Diexport">
+                                        <field name="number" string="No. Faktur"/>
+                                        <field name="partner_id" string="Customer"/>
+                                        <field name="date_invoice" string="Tgl. Faktur"/>
+                                        <field name="date_efaktur_exported" string="Tgl. Export"/>
+                                        <field name="amount_untaxed" string="DPP" widget="monetary"/>
+                                        <field name="amount_tax" string="PPN" widget="monetary"/>
+                                        <field name="amount_total" string="Total" widget="monetary"/>
+                                        <field name="state" string="Status"/>
+                                    </tree>
+                                </field>
+
+                                <!-- Bagian bawah: user pilih mana yang mau direset -->
+                                <separator string="Pilih Faktur untuk Direset"/>
+                                <p class="oe_grey">
+                                    Tambahkan faktur yang ingin direset ke daftar di bawah,
+                                    lalu klik <b>Reset Export</b>.
+                                </p>
+
+                                <field name="reset_invoice_ids" nolabel="1"
+                                    domain="[('id', 'in', exported_invoice_ids)]">
+                                    <tree string="Faktur yang Akan Direset">
+                                        <field name="number" string="No. Faktur"/>
+                                        <field name="partner_id" string="Customer"/>
+                                        <field name="date_invoice" string="Tgl. Faktur"/>
+                                        <field name="date_efaktur_exported" string="Tgl. Export"/>
+                                        <field name="state" string="Status"/>
+                                    </tree>
+                                </field>
+
+                                <div>
+                                    <button
+                                        string="Reset Export Faktur Terpilih"
+                                        name="action_reset_exported"
+                                        type="object"
+                                        class="btn-warning"
+                                        attrs="{'invisible': [('reset_invoice_ids', '=', [])]}"
+                                        confirm="Yakin ingin mereset faktur yang dipilih?"/>
+                                </div>
+
+                            </page>
+                            <!-- <page string="Sudah Diexport">
+                                <p class="oe_grey">
+                                    Faktur di bawah ini sudah pernah diexport.
+                                    Klik <b>Reset Export</b> untuk mengembalikan
+                                    statusnya agar bisa diexport ulang.
+                                </p>
+                                <div>
+                                    <button
+                                        string="Reset Export (Tampilkan Ulang di Tab Siap Export)"
+                                        name="action_reset_exported"
+                                        type="object"
+                                        class="btn-warning"
+                                        confirm="Yakin ingin mereset status export faktur yang ditampilkan?"/>
+                                </div>
+                                <field name="exported_invoice_ids" readonly="1" nolabel="1">
+                                    <tree string="Faktur Sudah Diexport">
+                                        <field name="number" string="No. Faktur"/>
+                                        <field name="partner_id" string="Customer"/>
+                                        <field name="date_invoice" string="Tgl. Faktur"/>
+                                        <field name="date_efaktur_exported"
+                                               string="Tgl. Export"/>
+                                        <field name="amount_untaxed"
+                                               string="DPP"
+                                               widget="monetary"/>
+                                        <field name="amount_tax"
+                                               string="PPN"
+                                               widget="monetary"/>
+                                        <field name="amount_total"
+                                               string="Total"
+                                               widget="monetary"/>
+                                        <field name="state" string="Status"/>
+                                    </tree>
+                                </field>
+                            </page> -->
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ==================== ACTION ==================== -->
+        <record id="act_open_export_coretax_main" model="ir.actions.act_window">
+            <field name="name">Export Faktur Pajak Coretax</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">export_coretax.export_efaktur</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_export_coretax_form"/>
+            <field name="target">current</field>
+        </record>
+
+    </data>
+</odoo>

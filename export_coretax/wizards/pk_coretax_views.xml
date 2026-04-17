@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_mhs_pph_export_inherit_coretax" model="ir.ui.view">
+        <field name="name">mhs.pph.form.inherit.coretax</field>
+        <field name="model">mhs.pph</field>
+        <field name="inherit_id" ref="mhs_efaktur.view_mhs_pph_export"/>
+        <field name="arch" type="xml">
+
+            <!-- Tambah tombol Export Coretax PPh 4(2) setelah tombol Cetak Rekap Pajak Simpur -->
+            <xpath expr="//button[@name='print_pajak_v2']" position="after">
+                <button string="Export Coretax PPh 4(2)"
+                        name="export_xml"
+                        type="object"
+                        class="btn-warning btn-lg"/>
+            </xpath>
+
+            <!-- Tambah area download BpuBulk XML di bawah area download CSV -->
+            <xpath expr="//field[@name='efaktur_file']/.." position="after">
+                <field name="bpu_filename" invisible="1"/>
+                <div class="o_row mt8">
+                    <img src="/mhs_efaktur/static/src/img/export.png"/>
+                    <strong>
+                        <field name="bpu_file"
+                               filename="bpu_filename"
+                               options="{'reload_on_button': True}"/>
+                    </strong>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
