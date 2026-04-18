@@ -55,12 +55,14 @@ class ExportCoretaxWizard(models.TransientModel):
             ('state', '=', 'open'),
             ('type', '=', 'out_invoice'),
             ('is_coretax_exported', '=', False),
+            ('tax_line_ids.tax_id.amount', '!=', 0),  # ← tambah ini, hanya yang ada pajak
         ]
 
         # Domain untuk faktur sudah di-export
         exported_domain = [
             ('type', '=', 'out_invoice'),
             ('is_coretax_exported', '=', True),
+            ('tax_line_ids.tax_id.amount', '!=', 0),  # ← tambah ini juga
         ]
 
         # Terapkan filter tanggal
@@ -278,18 +280,22 @@ class ExportCoretaxWizard(models.TransientModel):
 
         list_of_good_service = ET.SubElement(tax_invoice, 'ListOfGoodService')
         for line in inv.invoice_line_ids:
-            self._append_good_service_xml(list_of_good_service, line)
+            self._append_good_service_xml(list_of_good_service, line, inv.amount_untaxed, inv.amount_tax)
 
-    def _append_good_service_xml(self, parent, line):
+    def _append_good_service_xml(self, parent, line, amount_untaxed=0.0, amount_tax=0.0):
         price_unit = line.price_unit or 0.0
         quantity = line.quantity or 0.0
         discount = line.discount or 0.0
 
-        price_after_discount = price_unit * (1 - discount / 100.0)
-        tax_base = float_round(price_after_discount * quantity, 2)
-        total_discount = float_round((price_unit * quantity) - tax_base, 2)
+        # Diskon yang benar — dari % diskon line
+        total_discount = float_round(price_unit * quantity * (discount / 100.0), 2)
+
+        # DPP dari amount_untaxed invoice
+        tax_base = float_round(amount_untaxed or 0.0, 2)
         other_tax_base = float_round(tax_base * 11.0 / 12.0, 2)
-        vat = float_round(other_tax_base * 0.12, 2)
+
+        # VAT langsung dari amount_tax invoice, bukan dihitung ulang
+        vat = float_round(amount_tax or 0.0, 2)
 
         uom_code = line.uom_id.l10n_id_coretax_uom_code or 'UM.0001'
 

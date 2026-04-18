@@ -6,13 +6,13 @@
         <field name="inherit_id" ref="mhs_efaktur.view_mhs_pph_export"/>
         <field name="arch" type="xml">
 
-            <!-- Tambah tombol Export Coretax PPh 4(2) setelah tombol Cetak Rekap Pajak Simpur -->
+            <!-- Tambah tombol Export Coretax PPh 4(2) setelah tombol Cetak Rekap Pajak Simpur
             <xpath expr="//button[@name='print_pajak_v2']" position="after">
                 <button string="Export Coretax PPh 4(2)"
                         name="export_xml"
                         type="object"
                         class="btn-warning btn-lg"/>
-            </xpath>
+            </xpath> -->
 
             <!-- Tambah area download BpuBulk XML di bawah area download CSV -->
             <xpath expr="//field[@name='efaktur_file']/.." position="after">
