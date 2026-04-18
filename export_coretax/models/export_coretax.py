@@ -107,7 +107,7 @@ class ExportCoretaxWizard(models.TransientModel):
             raise UserError("Tidak ada faktur untuk diexport.")
 
         company = self.env.user.company_id.partner_id
-        npwp_seller = company.npwp.replace('.', '').replace('-', '') if company.npwp else ''
+        npwp_seller = company.npwp.replace('.', '').replace('-', '').strip() if company.npwp else ''
         seller_idtku = npwp_seller + '000000'
 
         root = ET.Element('TaxInvoiceBulk')
@@ -136,8 +136,7 @@ class ExportCoretaxWizard(models.TransientModel):
         today_str = fields.Date.today() # Mengambil tanggal hari ini (YYYY-MM-DD)
         filename = "XML-PPN-%s.xml" % today_str
         
-        module_path = get_module_path('export_coretax')
-        # Pastikan folder 'static' ada, kita gunakan filename yang baru dibuat
+        module_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         file_path = os.path.join(module_path, 'static', filename)
         # ----------------------------------
 

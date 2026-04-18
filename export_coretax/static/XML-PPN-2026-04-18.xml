@@ -3,70 +3,245 @@
   <TIN>0021411038322000</TIN>
   <ListOfTaxInvoice>
     <TaxInvoice>
-      <TaxInvoiceDate>2025-12-01</TaxInvoiceDate>
+      <TaxInvoiceDate>2020-01-01</TaxInvoiceDate>
       <TaxInvoiceOpt>Normal</TaxInvoiceOpt>
       <TrxCode>04</TrxCode>
       <AddInfo />
       <CustomDoc />
-      <RefDesc />
+      <RefDesc>CMS.TR.1.2019.382</RefDesc>
       <FacilityStamp />
       <SellerIDTKU>0021411038322000000000</SellerIDTKU>
-      <BuyerTin>1871036102650001</BuyerTin>
+      <BuyerTin>1871062511750003</BuyerTin>
       <BuyerDocument>TIN</BuyerDocument>
       <BuyerCountry>IDN</BuyerCountry>
       <BuyerDocumentNumber />
-      <BuyerName>ASNIZAR</BuyerName>
-      <BuyerAdress>PERUM BLORA INDAH BLOK C16 RT.002 KEL. SEGALA MIDER KEC. TKB  </BuyerAdress>
-      <BuyerEmail>-</BuyerEmail>
-      <BuyerIDTKU>1871036102650001000000</BuyerIDTKU>
+      <BuyerName>CHAIRUL SALEH</BuyerName>
+      <BuyerAdress>JLN. JEND SOEPRAPTO LK. II NO. 32 TANJUNG KARANG , ENGGAL KOTA BANDAR LAMPUNG LAMPUNG </BuyerAdress>
+      <BuyerEmail>irulsimpur75@gmail.com</BuyerEmail>
+      <BuyerIDTKU>1871062511750003000000</BuyerIDTKU>
       <ListOfGoodService>
         <GoodService>
           <Opt>B</Opt>
           <Code />
-          <Name>Rekening Listrik</Name>
+          <Name>Pajak Restoran</Name>
           <Unit>UM.0024</Unit>
-          <Price>2250.00</Price>
+          <Price>150000.00</Price>
           <Qty>1</Qty>
           <TotalDiscount>0.00</TotalDiscount>
-          <TaxBase>2250.00</TaxBase>
-          <OtherTaxBase>2062.50</OtherTaxBase>
+          <TaxBase>150000.00</TaxBase>
+          <OtherTaxBase>137500.00</OtherTaxBase>
           <VATRate>12</VATRate>
-          <VAT>247.50</VAT>
+          <VAT>16500.00</VAT>
           <STLGRate>0</STLGRate>
           <STLG>0</STLG>
         </GoodService>
       </ListOfGoodService>
     </TaxInvoice>
     <TaxInvoice>
-      <TaxInvoiceDate>2025-11-01</TaxInvoiceDate>
+      <TaxInvoiceDate>2020-01-01</TaxInvoiceDate>
       <TaxInvoiceOpt>Normal</TaxInvoiceOpt>
       <TrxCode>04</TrxCode>
       <AddInfo />
       <CustomDoc />
-      <RefDesc />
+      <RefDesc>CMS.L.1.2019.9868</RefDesc>
       <FacilityStamp />
       <SellerIDTKU>0021411038322000000000</SellerIDTKU>
-      <BuyerTin>0000000000000000</BuyerTin>
-      <BuyerDocument>Other ID</BuyerDocument>
+      <BuyerTin>000000000000000</BuyerTin>
+      <BuyerDocument>TIN</BuyerDocument>
       <BuyerCountry>IDN</BuyerCountry>
       <BuyerDocumentNumber />
-      <BuyerName>PT. VIOLET INDONESIA (INDOSAT)</BuyerName>
-      <BuyerAdress>MALL PURI INDAH LT. BASEMENT ZONA BIRU   BLOK: A7,  NOMOR: 008,  RT: - RW: - DKI JAKARTA</BuyerAdress>
-      <BuyerEmail>violet_telecommunication@yahoo.com</BuyerEmail>
-      <BuyerIDTKU>0000000000000000</BuyerIDTKU>
+      <BuyerName>LIM MEI THING</BuyerName>
+      <BuyerAdress>TELUK BETUNG  </BuyerAdress>
+      <BuyerEmail>test0259@gmail.com</BuyerEmail>
+      <BuyerIDTKU>000000000000000000000</BuyerIDTKU>
       <ListOfGoodService>
         <GoodService>
           <Opt>B</Opt>
           <Code />
           <Name>Rekening Listrik</Name>
           <Unit>UM.0024</Unit>
-          <Price>2250.00</Price>
+          <Price>169703.00</Price>
           <Qty>1</Qty>
           <TotalDiscount>0.00</TotalDiscount>
-          <TaxBase>2250.00</TaxBase>
-          <OtherTaxBase>2062.50</OtherTaxBase>
+          <TaxBase>169703.00</TaxBase>
+          <OtherTaxBase>155561.08</OtherTaxBase>
           <VATRate>12</VATRate>
-          <VAT>247.50</VAT>
+          <VAT>18667.33</VAT>
+          <STLGRate>0</STLGRate>
+          <STLG>0</STLG>
+        </GoodService>
+      </ListOfGoodService>
+    </TaxInvoice>
+    <TaxInvoice>
+      <TaxInvoiceDate>2020-01-01</TaxInvoiceDate>
+      <TaxInvoiceOpt>Normal</TaxInvoiceOpt>
+      <TrxCode>04</TrxCode>
+      <AddInfo />
+      <CustomDoc />
+      <RefDesc>CMS.JMS.1.2020.288</RefDesc>
+      <FacilityStamp />
+      <SellerIDTKU>0021411038322000000000</SellerIDTKU>
+      <BuyerTin>187111102810003</BuyerTin>
+      <BuyerDocument>TIN</BuyerDocument>
+      <BuyerCountry>IDN</BuyerCountry>
+      <BuyerDocumentNumber />
+      <BuyerName>FERRY HARDI LASE</BuyerName>
+      <BuyerAdress>KEDAMAIAN INDAH BLOK R NO. 3 RT. 013 KEDAMAIAN BL </BuyerAdress>
+      <BuyerEmail>raka4844@gmail.com</BuyerEmail>
+      <BuyerIDTKU>187111102810003000000</BuyerIDTKU>
+      <ListOfGoodService>
+        <GoodService>
+          <Opt>B</Opt>
+          <Code />
+          <Name>Jaminan Sewa</Name>
+          <Unit>UM.0024</Unit>
+          <Price>600000.00</Price>
+          <Qty>1</Qty>
+          <TotalDiscount>0.00</TotalDiscount>
+          <TaxBase>600000.00</TaxBase>
+          <OtherTaxBase>550000.00</OtherTaxBase>
+          <VATRate>12</VATRate>
+          <VAT>66000.00</VAT>
+          <STLGRate>0</STLGRate>
+          <STLG>0</STLG>
+        </GoodService>
+      </ListOfGoodService>
+    </TaxInvoice>
+    <TaxInvoice>
+      <TaxInvoiceDate>2020-01-01</TaxInvoiceDate>
+      <TaxInvoiceOpt>Normal</TaxInvoiceOpt>
+      <TrxCode>04</TrxCode>
+      <AddInfo />
+      <CustomDoc />
+      <RefDesc>CMS.JMS.1.2020.244</RefDesc>
+      <FacilityStamp />
+      <SellerIDTKU>0021411038322000000000</SellerIDTKU>
+      <BuyerTin>1871075202940003</BuyerTin>
+      <BuyerDocument>TIN</BuyerDocument>
+      <BuyerCountry>IDN</BuyerCountry>
+      <BuyerDocumentNumber />
+      <BuyerName>FEBRINA IMELDA</BuyerName>
+      <BuyerAdress>JLN. WR SUPRATMAN NO. 8 LK. III GEDONG PAKUON TBS BL </BuyerAdress>
+      <BuyerEmail>rberkah217@gmail.com</BuyerEmail>
+      <BuyerIDTKU>1871075202940003000000</BuyerIDTKU>
+      <ListOfGoodService>
+        <GoodService>
+          <Opt>B</Opt>
+          <Code />
+          <Name>Jaminan Sewa</Name>
+          <Unit>UM.0024</Unit>
+          <Price>600000.00</Price>
+          <Qty>1</Qty>
+          <TotalDiscount>0.00</TotalDiscount>
+          <TaxBase>600000.00</TaxBase>
+          <OtherTaxBase>550000.00</OtherTaxBase>
+          <VATRate>12</VATRate>
+          <VAT>66000.00</VAT>
+          <STLGRate>0</STLGRate>
+          <STLG>0</STLG>
+        </GoodService>
+      </ListOfGoodService>
+    </TaxInvoice>
+    <TaxInvoice>
+      <TaxInvoiceDate>2020-01-01</TaxInvoiceDate>
+      <TaxInvoiceOpt>Normal</TaxInvoiceOpt>
+      <TrxCode>04</TrxCode>
+      <AddInfo />
+      <CustomDoc />
+      <RefDesc>CMS.JMS.1.2020.242</RefDesc>
+      <FacilityStamp />
+      <SellerIDTKU>0021411038322000000000</SellerIDTKU>
+      <BuyerTin>1871111308900001</BuyerTin>
+      <BuyerDocument>TIN</BuyerDocument>
+      <BuyerCountry>IDN</BuyerCountry>
+      <BuyerDocumentNumber />
+      <BuyerName>RIZKI ANDREAN</BuyerName>
+      <BuyerAdress>JLN. SOEKARN0 HATTA/ GAMA II NO. 2 RT. 001 T. SENANG BANDAR LAMPUNG </BuyerAdress>
+      <BuyerEmail>-</BuyerEmail>
+      <BuyerIDTKU>1871111308900001000000</BuyerIDTKU>
+      <ListOfGoodService>
+        <GoodService>
+          <Opt>B</Opt>
+          <Code />
+          <Name>Jaminan Sewa</Name>
+          <Unit>UM.0024</Unit>
+          <Price>540000.00</Price>
+          <Qty>1</Qty>
+          <TotalDiscount>0.00</TotalDiscount>
+          <TaxBase>540000.00</TaxBase>
+          <OtherTaxBase>495000.00</OtherTaxBase>
+          <VATRate>12</VATRate>
+          <VAT>59400.00</VAT>
+          <STLGRate>0</STLGRate>
+          <STLG>0</STLG>
+        </GoodService>
+      </ListOfGoodService>
+    </TaxInvoice>
+    <TaxInvoice>
+      <TaxInvoiceDate>2020-01-01</TaxInvoiceDate>
+      <TaxInvoiceOpt>Normal</TaxInvoiceOpt>
+      <TrxCode>04</TrxCode>
+      <AddInfo />
+      <CustomDoc />
+      <RefDesc>CMS.1.2020.13688</RefDesc>
+      <FacilityStamp />
+      <SellerIDTKU>0021411038322000000000</SellerIDTKU>
+      <BuyerTin>1871031405780007 </BuyerTin>
+      <BuyerDocument>TIN</BuyerDocument>
+      <BuyerCountry>IDN</BuyerCountry>
+      <BuyerDocumentNumber />
+      <BuyerName>INDRA GANDI</BuyerName>
+      <BuyerAdress>JLN. MANGKUBUMI KOMP PERUMAHAN MANGKUBUMI BLOK A.1 NO. 06 SEGALA MIDER </BuyerAdress>
+      <BuyerEmail>test0214@gmail.com</BuyerEmail>
+      <BuyerIDTKU>1871031405780007 000000</BuyerIDTKU>
+      <ListOfGoodService>
+        <GoodService>
+          <Opt>B</Opt>
+          <Code />
+          <Name>Sewa</Name>
+          <Unit>UM.0024</Unit>
+          <Price>5000000.00</Price>
+          <Qty>1</Qty>
+          <TotalDiscount>0.00</TotalDiscount>
+          <TaxBase>5000000.00</TaxBase>
+          <OtherTaxBase>4583333.33</OtherTaxBase>
+          <VATRate>12</VATRate>
+          <VAT>550000.00</VAT>
+          <STLGRate>0</STLGRate>
+          <STLG>0</STLG>
+        </GoodService>
+      </ListOfGoodService>
+    </TaxInvoice>
+    <TaxInvoice>
+      <TaxInvoiceDate>2020-01-01</TaxInvoiceDate>
+      <TaxInvoiceOpt>Normal</TaxInvoiceOpt>
+      <TrxCode>04</TrxCode>
+      <AddInfo />
+      <CustomDoc />
+      <RefDesc>CMS.1.2019.12874</RefDesc>
+      <FacilityStamp />
+      <SellerIDTKU>0021411038322000000000</SellerIDTKU>
+      <BuyerTin>000000000000000</BuyerTin>
+      <BuyerDocument>TIN</BuyerDocument>
+      <BuyerCountry>IDN</BuyerCountry>
+      <BuyerDocumentNumber />
+      <BuyerName>LIM MEI THING</BuyerName>
+      <BuyerAdress>TELUK BETUNG  </BuyerAdress>
+      <BuyerEmail>test0259@gmail.com</BuyerEmail>
+      <BuyerIDTKU>000000000000000000000</BuyerIDTKU>
+      <ListOfGoodService>
+        <GoodService>
+          <Opt>B</Opt>
+          <Code />
+          <Name>Service Charge</Name>
+          <Unit>UM.0024</Unit>
+          <Price>60000.00</Price>
+          <Qty>9</Qty>
+          <TotalDiscount>0.00</TotalDiscount>
+          <TaxBase>540000.00</TaxBase>
+          <OtherTaxBase>495000.00</OtherTaxBase>
+          <VATRate>12</VATRate>
+          <VAT>59400.00</VAT>
           <STLGRate>0</STLGRate>
           <STLG>0</STLG>
         </GoodService>

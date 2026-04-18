@@ -3,21 +3,21 @@
   <TIN>0021411038322000</TIN>
   <ListOfBpu>
     <Bpu>
-      <TaxPeriodMonth>12</TaxPeriodMonth>
-      <TaxPeriodYear>2025</TaxPeriodYear>
-      <CounterpartTin>1871036102650001</CounterpartTin>
-      <IDPlaceOfBusinessActivityOfIncomeRecipient>1871036102650001000000</IDPlaceOfBusinessActivityOfIncomeRecipient>
+      <TaxPeriodMonth>8</TaxPeriodMonth>
+      <TaxPeriodYear>2021</TaxPeriodYear>
+      <CounterpartTin>1871051111600006</CounterpartTin>
+      <IDPlaceOfBusinessActivityOfIncomeRecipient>1871051111600006000000</IDPlaceOfBusinessActivityOfIncomeRecipient>
       <TaxCertificate>N/A</TaxCertificate>
       <TaxObjectCode>22-101-02</TaxObjectCode>
-      <TaxBase>2045</TaxBase>
+      <TaxBase>400000</TaxBase>
       <Rate>0.5</Rate>
       <Document>CommercialInvoice</Document>
-      <DocumentNumber>CMS.001</DocumentNumber>
-      <DocumentDate>2025-12-01</DocumentDate>
+      <DocumentNumber>CMS.TR.8.2021.1283</DocumentNumber>
+      <DocumentDate>2021-08-01</DocumentDate>
       <IDPlaceOfBusinessActivity>0021411038322000000000</IDPlaceOfBusinessActivity>
       <GovTreasurerOpt>N/A</GovTreasurerOpt>
       <SP2DNumber xsi:nil="true" />
-      <WithholdingDate>2025-12-31</WithholdingDate>
+      <WithholdingDate>2021-08-31</WithholdingDate>
     </Bpu>
   </ListOfBpu>
 </BpuBulk>

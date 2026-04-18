@@ -88,8 +88,10 @@ class pph_coretax_inherit(models.TransientModel):
                 raise UserError(
                     "NPWP customer belum diisi: %s" % inv.partner_id.name
                 )
-            npwp_buyer  = inv.partner_id.npwp.replace('.', '').replace('-', '')
+            npwp_buyer  = inv.partner_id.npwp.replace('.', '').replace('-', '').strip()
             buyer_idtku = npwp_buyer + '000000'     # 22 digit
+
+        print("NPWP Buyer: %s", npwp_buyer)
 
         dpp, pph = self._count_pph4(inv)
 
@@ -180,8 +182,9 @@ class pph_coretax_inherit(models.TransientModel):
         self._indent_xml(root)
         tree = ET.ElementTree(root)
 
-        module_path = get_module_path('export_coretax')
+        module_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         file_path = os.path.join(module_path, 'static', 'pph4_bpu_bulk.xml')
+
         tree.write(file_path, encoding='utf-8', xml_declaration=True)
 
         with open(file_path, 'rb') as f:
