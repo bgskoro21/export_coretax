@@ -70,50 +70,26 @@
 
                             <!-- TAB 2: FAKTUR SUDAH DIEXPORT -->
                             <page string="Sudah Diexport">
+                                <div style="margin-bottom: 10px;">
+                                    <button
+                                        string="Pilih Faktur untuk Direset"
+                                        name="action_open_reset_wizard"
+                                        type="object"
+                                        class="btn-warning"/>
+                                </div>
 
-                                <!-- Bagian atas: daftar semua yang sudah diexport (readonly) -->
-                                <separator string="Semua Faktur yang Sudah Diexport"/>
                                 <field name="exported_invoice_ids" readonly="1" nolabel="1">
                                     <tree string="Faktur Sudah Diexport">
                                         <field name="number" string="No. Faktur"/>
                                         <field name="partner_id" string="Customer"/>
                                         <field name="date_invoice" string="Tgl. Faktur"/>
-                                        <field name="date_efaktur_exported" string="Tgl. Export"/>
+                                        <field name="date_coretax_exported" string="Tgl. Export"/>
                                         <field name="amount_untaxed" string="DPP" widget="monetary"/>
                                         <field name="amount_tax" string="PPN" widget="monetary"/>
                                         <field name="amount_total" string="Total" widget="monetary"/>
                                         <field name="state" string="Status"/>
                                     </tree>
                                 </field>
-
-                                <!-- Bagian bawah: user pilih mana yang mau direset -->
-                                <separator string="Pilih Faktur untuk Direset"/>
-                                <p class="oe_grey">
-                                    Tambahkan faktur yang ingin direset ke daftar di bawah,
-                                    lalu klik <b>Reset Export</b>.
-                                </p>
-
-                                <field name="reset_invoice_ids" nolabel="1"
-                                    domain="[('id', 'in', exported_invoice_ids)]">
-                                    <tree string="Faktur yang Akan Direset">
-                                        <field name="number" string="No. Faktur"/>
-                                        <field name="partner_id" string="Customer"/>
-                                        <field name="date_invoice" string="Tgl. Faktur"/>
-                                        <field name="date_efaktur_exported" string="Tgl. Export"/>
-                                        <field name="state" string="Status"/>
-                                    </tree>
-                                </field>
-
-                                <div>
-                                    <button
-                                        string="Reset Export Faktur Terpilih"
-                                        name="action_reset_exported"
-                                        type="object"
-                                        class="btn-warning"
-                                        attrs="{'invisible': [('reset_invoice_ids', '=', [])]}"
-                                        confirm="Yakin ingin mereset faktur yang dipilih?"/>
-                                </div>
-
                             </page>
                             <!-- <page string="Sudah Diexport">
                                 <p class="oe_grey">

@@ -10,7 +10,7 @@ class ResPartner(models.Model):
             ('national', 'National ID'),
             ('other', 'Other'),
         ],
-        default="npwp"
+        default="other"
     )
 
     specific_nitku = fields.Char(string='NITKU Cabang')

@@ -17,3 +17,4 @@ class AccountInvoice(models.Model):
         readonly=True,
         copy=False,
     )
+    coretax_reset_selected = fields.Boolean(string='Reset?', default=False, copy=False)

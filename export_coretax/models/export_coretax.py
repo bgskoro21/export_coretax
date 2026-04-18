@@ -42,14 +42,6 @@ class ExportCoretaxWizard(models.TransientModel):
         string='Faktur Sudah Diexport',
     )
 
-    reset_invoice_ids = fields.Many2many(
-        'account.invoice',
-        'coretax_wizard_reset_rel',
-        'wizard_id',
-        'invoice_id',
-        string='Pilih Faktur untuk Direset',
-    )
-
     # =====================
     # ACTIONS
     # =====================
@@ -89,6 +81,13 @@ class ExportCoretaxWizard(models.TransientModel):
 
         self.invoice_ids = [(6, 0, invoices.ids)]
         self.exported_invoice_ids = [(6, 0, exported.ids)]
+
+        # Populate checkbox lines dari exported
+        self.reset_line_ids = [(5, 0, 0)]
+        self.reset_line_ids = [
+            (0, 0, {'invoice_id': inv.id, 'selected': False})
+            for inv in exported
+        ]
 
         # Re-open form dengan data terbaru
         return {
@@ -165,32 +164,56 @@ class ExportCoretaxWizard(models.TransientModel):
 
     @api.multi
     def action_reset_exported(self):
-        if not self.reset_invoice_ids:
-            raise UserError("Pilih minimal satu faktur yang ingin direset.")
+        selected_lines = self.reset_line_ids.filtered(lambda l: l.selected)
 
-        # Reset flag export pada invoice yang dipilih
-        self.reset_invoice_ids.write({
+        if not selected_lines:
+            raise UserError("Centang minimal satu faktur yang ingin direset.")
+
+        selected_invoices = selected_lines.mapped('invoice_id')
+
+        selected_invoices.write({
             'is_coretax_exported': False,
             'date_coretax_exported': False,
         })
 
-        # Pindahkan balik ke invoice_ids, hapus dari exported & reset list
         self.write({
-            'invoice_ids': [(4, inv.id) for inv in self.reset_invoice_ids],
-            'exported_invoice_ids': [(3, inv.id) for inv in self.reset_invoice_ids],
-            'reset_invoice_ids': [(5, 0, 0)],  # kosongkan pilihan
+            'invoice_ids': [(4, inv.id) for inv in selected_invoices],
+            'exported_invoice_ids': [(3, inv.id) for inv in selected_invoices],
         })
 
+        selected_lines.unlink()
         self.env.cr.commit()
 
         return {
             'type': 'ir.actions.act_window',
             'res_model': self._name,
             'res_id': self.id,
-            'view_type': 'form',
             'view_mode': 'form',
             'view_id': self.env.ref('export_coretax.view_export_coretax_form').id,
             'target': 'current',
+        }
+    
+    @api.multi
+    def action_open_reset_wizard(self):
+        if not self.exported_invoice_ids:
+            raise UserError("Tidak ada faktur yang sudah diexport.")
+
+        # Buat reset wizard dengan lines dari exported invoices
+        reset_wizard = self.env['export_coretax.reset.wizard'].create({
+            'parent_wizard_id': self.id,
+            'line_ids': [
+                (0, 0, {'invoice_id': inv.id, 'selected': False})
+                for inv in self.exported_invoice_ids
+            ],
+        })
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Pilih Faktur untuk Direset',
+            'res_model': 'export_coretax.reset.wizard',
+            'res_id': reset_wizard.id,
+            'view_mode': 'form',
+            'target': 'new',  # popup!
         }
 
     # =====================

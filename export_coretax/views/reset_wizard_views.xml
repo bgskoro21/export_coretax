@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_coretax_reset_wizard_form" model="ir.ui.view">
+            <field name="name">export_coretax.reset.wizard.form</field>
+            <field name="model">export_coretax.reset.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Pilih Faktur untuk Direset">
+                    <sheet>
+                        <p class="oe_grey">
+                            Centang faktur yang ingin direset, lalu klik <b>Reset Sekarang</b>.
+                        </p>
+                        <field name="line_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="selected" string="Reset?"/>
+                                <field name="number" string="No. Faktur"/>
+                                <field name="partner_id" string="Customer"/>
+                                <field name="date_invoice" string="Tgl. Faktur"/>
+                                <field name="date_coretax_exported" string="Tgl. Export"/>
+                                <field name="amount_total" string="Total" widget="monetary"/>
+                                <field name="currency_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                    <footer>
+                        <button
+                            string="Reset Sekarang"
+                            name="action_reset"
+                            type="object"
+                            class="btn-warning"
+                            confirm="Yakin ingin mereset faktur yang dicentang?"/>
+                        <button
+                            string="Batal"
+                            class="btn-default"
+                            special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

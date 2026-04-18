@@ -14,6 +14,7 @@
     'depends': ['base', 'account', 'mhs_efaktur'],
     'data': [
         'wizards/pk_coretax_views.xml',
+        'views/reset_wizard_views.xml',
         'views/export_coretax_views.xml',
         'views/res_partner_views.xml',
         'views/uom_views.xml',

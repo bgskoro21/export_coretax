@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_export_coretax_export_coretax,export_coretax.export_coretax,model_export_coretax.export_efaktur,,1,0,0,0
+access_export_coretax_reset_wizard,export_coretax.reset.wizard,model_export_coretax_reset_wizard,base.group_user,1,1,1,1
+access_export_coretax_reset_line,export_coretax.reset.line,model_export_coretax_reset_line,base.group_user,1,1,1,1
