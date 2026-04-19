@@ -52,10 +52,10 @@ class ExportCoretaxWizard(models.TransientModel):
 
         # Domain untuk faktur belum di-export
         domain = [
-            ('state', '=', 'open'),
+            ('state', 'in', ['open', 'paid']),   # ← ganti = ke in
             ('type', '=', 'out_invoice'),
             ('is_coretax_exported', '=', False),
-            ('tax_line_ids.tax_id.amount', '!=', 0),  # ← tambah ini, hanya yang ada pajak
+            ('tax_line_ids.tax_id.amount', '!=', 0),
         ]
 
         # Domain untuk faktur sudah di-export
