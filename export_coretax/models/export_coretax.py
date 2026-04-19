@@ -287,7 +287,7 @@ class ExportCoretaxWizard(models.TransientModel):
         # DPP per line = subtotal / 1.11
         tax_base = float_round(subtotal, 2)
         total_discount = float_round(price_unit * quantity * (discount / 100.0), 2)
-        other_tax_base = tax_base
+        other_tax_base = float_round(tax_base * 11.0 / 12.0, 2)
 
         # VAT dari rate tax line yang sebenarnya
         vat = float_round(tax_base * (tax_rate / 100.0), 2)
