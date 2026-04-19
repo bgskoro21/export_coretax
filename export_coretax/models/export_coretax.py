@@ -278,6 +278,7 @@ class ExportCoretaxWizard(models.TransientModel):
         discount = line.discount or 0.0
 
         price_after_discount = price_unit * (1 - discount / 100.0)
+        price = float_round(price_after_discount / 1.11, 2)
         subtotal = price_after_discount * quantity
 
         # Ambil rate dari tax yang ada di line
@@ -298,7 +299,7 @@ class ExportCoretaxWizard(models.TransientModel):
         ET.SubElement(good_service, 'Code').text = ''
         ET.SubElement(good_service, 'Name').text = line.product_id.name or ''
         ET.SubElement(good_service, 'Unit').text = uom_code
-        ET.SubElement(good_service, 'Price').text = '%.2f' % price_unit
+        ET.SubElement(good_service, 'Price').text = '%.2f' % price
         ET.SubElement(good_service, 'Qty').text = str(int(quantity))
         ET.SubElement(good_service, 'TotalDiscount').text = '%.2f' % total_discount
         ET.SubElement(good_service, 'TaxBase').text = '%.2f' % tax_base
