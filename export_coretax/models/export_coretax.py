@@ -299,7 +299,7 @@ class ExportCoretaxWizard(models.TransientModel):
         ET.SubElement(good_service, 'Code').text = ''
         ET.SubElement(good_service, 'Name').text = line.product_id.name or ''
         ET.SubElement(good_service, 'Unit').text = uom_code
-        ET.SubElement(good_service, 'Price').text = '%.2f' % price_unit
+        ET.SubElement(good_service, 'Price').text = '%.2f' % price
         ET.SubElement(good_service, 'Qty').text = str(int(quantity))
         ET.SubElement(good_service, 'TotalDiscount').text = '%.2f' % total_discount
         ET.SubElement(good_service, 'TaxBase').text = '%.2f' % tax_base
