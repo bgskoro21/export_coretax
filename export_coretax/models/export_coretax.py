@@ -285,7 +285,7 @@ class ExportCoretaxWizard(models.TransientModel):
         tax_rate = sum(tax.amount for tax in line.invoice_line_tax_ids)
 
         # DPP per line = subtotal / 1.11
-        tax_base = float_round(subtotal / 1.11, 2)
+        tax_base = float_round(subtotal, 2)
         total_discount = float_round(price_unit * quantity * (discount / 100.0), 2)
         other_tax_base = tax_base
 
