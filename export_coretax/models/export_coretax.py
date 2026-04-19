@@ -279,13 +279,13 @@ class ExportCoretaxWizard(models.TransientModel):
 
         price_after_discount = price_unit * (1 - discount / 100.0)
         price = float_round(price_after_discount / 1.11, 2)
-        subtotal = price_after_discount * quantity
+        subtotal = price * quantity
 
         # Ambil rate dari tax yang ada di line
         tax_rate = sum(tax.amount for tax in line.invoice_line_tax_ids)
 
         # DPP per line = subtotal / 1.11
-        tax_base = float_round(subtotal / 1.11, 2)
+        tax_base = float_round(subtotal, 2)
         total_discount = float_round(price_unit * quantity * (discount / 100.0), 2)
         other_tax_base = float_round(tax_base * 11.0 / 12.0, 2)
 
