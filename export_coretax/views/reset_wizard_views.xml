@@ -10,6 +10,19 @@
                         <p class="oe_grey">
                             Centang faktur yang ingin direset, lalu klik <b>Reset Sekarang</b>.
                         </p>
+                        <!-- Ganti oe_button_box ke div biasa -->
+                        <div>
+                            <button
+                                string="Pilih Semua"
+                                name="action_select_all"
+                                type="object"
+                                class="btn-primary"/>
+                            <button
+                                string="Batal Pilih Semua"
+                                name="action_unselect_all"
+                                type="object"
+                                class="btn-default"/>
+                        </div>
                         <field name="line_ids" nolabel="1">
                             <tree editable="bottom">
                                 <field name="selected" string="Reset?"/>

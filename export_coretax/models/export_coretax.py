@@ -222,32 +222,27 @@ class ExportCoretaxWizard(models.TransientModel):
     # =====================
 
     def _append_tax_invoice_xml(self, parent, inv, seller_idtku):
-        # Ambil data dari partner/customer
         partner = inv.partner_id
         
-        # Ambil buyer_type dari partner atau invoice (sesuaikan lokasi field Anda)
         buyer_type = partner.buyer_id_type or 'tin' 
-        npwp_buyer = (partner.npwp or '').replace('.', '').replace('-', '')
+        npwp_buyer = (partner.npwp or '').replace('.', '').replace('-', '').strip()
 
-        # --- LOGIKA IDENTITAS BUYER ---
         if buyer_type == 'national':
             val_buyer_tin = '0000000000000000'
             val_buyer_doc = 'National ID'
-            val_buyer_doc_number = (partner.national_id or npwp_buyer) # Pakai field national_id
+            val_buyer_doc_number = (partner.national_id or npwp_buyer)
             val_buyer_idtku = npwp_buyer + '000000'
 
         elif buyer_type == 'other':
             val_buyer_tin = '0000000000000000'
             val_buyer_doc = 'Other ID'
-            # Di contoh Anda, DocumentNumber sama dengan RefDesc (nomor invoice)
-            val_buyer_doc_number = inv.number or '' 
-            val_buyer_idtku = '0000000000000000' # Sesuai contoh XML Other ID Anda
+            val_buyer_doc_number = inv.number or ''
+            val_buyer_idtku = '0000000000000000'
             
-        else: # Default TIN (NPWP)
+        else:  # Default TIN (NPWP)
             val_buyer_tin = npwp_buyer
             val_buyer_doc = 'TIN'
             val_buyer_doc_number = ''
-            # Logika IDTKU Spesifik untuk NPWP
             if partner.is_spesific_nitku and partner.spesific_nitku:
                 val_buyer_idtku = partner.spesific_nitku
             else:
@@ -257,12 +252,7 @@ class ExportCoretaxWizard(models.TransientModel):
 
         ET.SubElement(tax_invoice, 'TaxInvoiceDate').text = inv.date_invoice or ''
         ET.SubElement(tax_invoice, 'TaxInvoiceOpt').text = 'Normal'
-        
-        # TrxCode 04 biasanya untuk DPP Nilai Lain, 01 untuk Umum. 
-        # Di contoh XML 'Other' Anda pakai 04. Kita buat dinamis:
-        trx_code = '04'
-        ET.SubElement(tax_invoice, 'TrxCode').text = trx_code
-        
+        ET.SubElement(tax_invoice, 'TrxCode').text = '04'
         ET.SubElement(tax_invoice, 'AddInfo')
         ET.SubElement(tax_invoice, 'CustomDoc')
         ET.SubElement(tax_invoice, 'RefDesc').text = inv.number or ''
@@ -280,22 +270,26 @@ class ExportCoretaxWizard(models.TransientModel):
 
         list_of_good_service = ET.SubElement(tax_invoice, 'ListOfGoodService')
         for line in inv.invoice_line_ids:
-            self._append_good_service_xml(list_of_good_service, line, inv.amount_untaxed, inv.amount_tax)
+            self._append_good_service_xml(list_of_good_service, line)
 
-    def _append_good_service_xml(self, parent, line, amount_untaxed=0.0, amount_tax=0.0):
+    def _append_good_service_xml(self, parent, line):
         price_unit = line.price_unit or 0.0
         quantity = line.quantity or 0.0
         discount = line.discount or 0.0
 
-        # Diskon yang benar — dari % diskon line
-        total_discount = float_round(price_unit * quantity * (discount / 100.0), 2)
+        price_after_discount = price_unit * (1 - discount / 100.0)
+        subtotal = price_after_discount * quantity
 
-        # DPP dari amount_untaxed invoice
-        tax_base = float_round(amount_untaxed or 0.0, 2)
+        # Ambil rate dari tax yang ada di line
+        tax_rate = sum(tax.amount for tax in line.invoice_line_tax_ids)
+
+        # DPP per line = subtotal / 1.11
+        tax_base = float_round(subtotal / 1.11, 2)
+        total_discount = float_round(price_unit * quantity * (discount / 100.0), 2)
         other_tax_base = float_round(tax_base * 11.0 / 12.0, 2)
 
-        # VAT langsung dari amount_tax invoice, bukan dihitung ulang
-        vat = float_round(amount_tax or 0.0, 2)
+        # VAT dari rate tax line yang sebenarnya
+        vat = float_round(tax_base * (tax_rate / 100.0), 2)
 
         uom_code = line.uom_id.l10n_id_coretax_uom_code or 'UM.0001'
 
@@ -309,7 +303,7 @@ class ExportCoretaxWizard(models.TransientModel):
         ET.SubElement(good_service, 'TotalDiscount').text = '%.2f' % total_discount
         ET.SubElement(good_service, 'TaxBase').text = '%.2f' % tax_base
         ET.SubElement(good_service, 'OtherTaxBase').text = '%.2f' % other_tax_base
-        ET.SubElement(good_service, 'VATRate').text = '12'
+        ET.SubElement(good_service, 'VATRate').text = str(int(tax_rate))
         ET.SubElement(good_service, 'VAT').text = '%.2f' % vat
         ET.SubElement(good_service, 'STLGRate').text = '0'
         ET.SubElement(good_service, 'STLG').text = '0'

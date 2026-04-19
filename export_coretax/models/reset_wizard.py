@@ -23,6 +23,28 @@ class CoretaxResetWizard(models.TransientModel):
     line_ids = fields.One2many('export_coretax.reset.line', 'wizard_id', string='Faktur')
 
     @api.multi
+    def action_select_all(self):
+        self.line_ids.write({'selected': True})
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': self._name,
+            'res_id': self.id,
+            'view_mode': 'form',
+            'target': 'new',
+        }
+
+    @api.multi
+    def action_unselect_all(self):
+        self.line_ids.write({'selected': False})
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': self._name,
+            'res_id': self.id,
+            'view_mode': 'form',
+            'target': 'new',
+        }
+
+    @api.multi
     def action_reset(self):
         selected_lines = self.line_ids.filtered(lambda l: l.selected)
 
@@ -36,7 +58,6 @@ class CoretaxResetWizard(models.TransientModel):
             'date_coretax_exported': False,
         })
 
-        # Update parent wizard
         parent = self.env['export_coretax.export_efaktur'].browse(self.parent_wizard_id)
         if parent.exists():
             parent.write({
