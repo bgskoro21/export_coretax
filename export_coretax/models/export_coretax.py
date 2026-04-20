@@ -265,7 +265,7 @@ class ExportCoretaxWizard(models.TransientModel):
         ET.SubElement(tax_invoice, 'BuyerDocumentNumber').text = val_buyer_doc_number
         ET.SubElement(tax_invoice, 'BuyerName').text = partner.name or ''
         ET.SubElement(tax_invoice, 'BuyerAdress').text = partner.alamat_lengkap or ''
-        ET.SubElement(tax_invoice, 'BuyerEmail').text = partner.email or '-'
+        ET.SubElement(tax_invoice, 'BuyerEmail').text = partner.email or ''
         ET.SubElement(tax_invoice, 'BuyerIDTKU').text = val_buyer_idtku
 
         list_of_good_service = ET.SubElement(tax_invoice, 'ListOfGoodService')
