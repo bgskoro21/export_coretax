@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, api, fields
-import xml.etree.ElementTree as ET
-import base64
-from io import BytesIO
+
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
@@ -17,4 +15,17 @@ class AccountInvoice(models.Model):
         readonly=True,
         copy=False,
     )
-    coretax_reset_selected = fields.Boolean(string='Reset?', default=False, copy=False)
+    coretax_reset_selected = fields.Boolean(
+        string='Reset?',
+        default=False,
+        copy=False,
+    )
+    coretax_billing_period = fields.Date(
+        string='Periode Tagihan Coretax',
+        copy=False,
+        help=(
+            'Periode penagihan khusus untuk Coretax. '
+            'Jika diisi, faktur ini akan muncul saat filter periode yang sesuai '
+            'meskipun tanggal fakturnya berbeda.'
+        ),
+    )

@@ -5,3 +5,4 @@ from . import reset_wizard
 from . import export_coretax
 from . import res_partner
 from . import uom
+from . import pph
