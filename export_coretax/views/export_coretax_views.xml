@@ -2,7 +2,9 @@
 <odoo>
     <data>
 
-        <!-- ==================== VIEW ==================== -->
+        <!-- ============================================================ -->
+        <!-- VIEW UTAMA WIZARD                                            -->
+        <!-- ============================================================ -->
         <record id="view_export_coretax_form" model="ir.ui.view">
             <field name="name">export_coretax.export_efaktur.form</field>
             <field name="model">export_coretax.export_efaktur</field>
@@ -10,12 +12,11 @@
                 <form string="Export Faktur Pajak Keluaran (Coretax)">
                     <sheet>
 
-                        <!-- JUDUL -->
                         <div class="oe_title">
                             <h1>Export Faktur Pajak Coretax</h1>
                         </div>
 
-                        <!-- SECTION FILTER -->
+                        <!-- FILTER -->
                         <group string="Filter Pencarian">
                             <group>
                                 <field name="date_from"/>
@@ -26,105 +27,92 @@
                             </group>
                         </group>
 
+                        <div style="background:#fff3cd; border:1px solid #ffc107;
+                                    border-radius:4px; padding:8px 12px; margin-bottom:10px;
+                                    font-size:12px; color:#856404;">
+                            <strong>Tip Periode Tagihan:</strong>
+                            Faktur tanpa periode khusus difilter pakai <em>Tgl. Faktur</em>.
+                            Faktur yang sudah diubah periodenya difilter pakai
+                            <em>Periode Tagihan</em>. Ubah kolom tersebut lalu klik
+                            <strong>Simpan Periode</strong> agar faktur muncul di bulan yang benar.
+                        </div>
+
+                        <!-- TOMBOL -->
                         <group>
                             <div>
-                                <button string="Cari Faktur" 
-                                        name="action_search" 
-                                        type="object" 
-                                        class="btn-primary" 
-                                        style="margin-right: 10px;"/>
-                                
-                                <button string="Export XML Coretax" 
-                                        name="action_export" 
-                                        type="object" 
-                                        class="btn-primary" 
-                                        confirm="Yakin ingin mengexport semua faktur yang ditampilkan?"/>
+                                <button string="Cari Faktur"
+                                        name="action_search"
+                                        type="object"
+                                        class="btn-primary"
+                                        style="margin-right:8px;"/>
+
+                                <button string="Simpan Periode"
+                                        name="action_save_billing_periods"
+                                        type="object"
+                                        class="btn-default"
+                                        style="margin-right:8px;"
+                                        confirm="Simpan perubahan Periode Tagihan ke semua faktur?"/>
+
+                                <button string="Export XML Coretax"
+                                        name="action_export"
+                                        type="object"
+                                        class="btn-success"
+                                        confirm="Export hanya faktur yang dicentang (kolom Export?)?"/>
                             </div>
                         </group>
 
                         <separator/>
 
-                        <!-- TAB HASIL -->
                         <notebook>
 
                             <!-- TAB 1: FAKTUR SIAP EXPORT -->
                             <page string="Faktur Siap Export">
-                                <field name="invoice_ids" readonly="1" nolabel="1">
-                                    <tree string="Faktur Siap Export">
-                                        <field name="number" string="No. Faktur"/>
-                                        <field name="partner_id" string="Customer"/>
-                                        <field name="date_invoice" string="Tgl. Faktur"/>
-                                        <field name="amount_untaxed"
-                                               string="DPP"
-                                               widget="monetary"/>
-                                        <field name="amount_tax"
-                                               string="PPN"
-                                               widget="monetary"/>
-                                        <field name="amount_total"
-                                               string="Total"
-                                               widget="monetary"/>
-                                        <field name="state" string="Status"/>
-                                    </tree>
-                                </field>
-                            </page>
-
-                            <!-- TAB 2: FAKTUR SUDAH DIEXPORT -->
-                            <page string="Sudah Diexport">
-                                <div style="margin-bottom: 10px;">
-                                    <button
-                                        string="Pilih Faktur untuk Direset"
-                                        name="action_open_reset_wizard"
-                                        type="object"
-                                        class="btn-warning"/>
-                                </div>
-
-                                <field name="exported_invoice_ids" readonly="1" nolabel="1">
-                                    <tree string="Faktur Sudah Diexport">
-                                        <field name="number" string="No. Faktur"/>
-                                        <field name="partner_id" string="Customer"/>
-                                        <field name="date_invoice" string="Tgl. Faktur"/>
-                                        <field name="date_coretax_exported" string="Tgl. Export"/>
-                                        <field name="amount_untaxed" string="DPP" widget="monetary"/>
-                                        <field name="amount_tax" string="PPN" widget="monetary"/>
-                                        <field name="amount_total" string="Total" widget="monetary"/>
-                                        <field name="state" string="Status"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <!-- <page string="Sudah Diexport">
-                                <p class="oe_grey">
-                                    Faktur di bawah ini sudah pernah diexport.
-                                    Klik <b>Reset Export</b> untuk mengembalikan
-                                    statusnya agar bisa diexport ulang.
+                                <p style="color:#6c757d; font-size:12px; margin-bottom:6px;">
+                                    Centang <strong>Export?</strong> untuk faktur yang ingin
+                                    diikutkan. Ubah <strong>Periode Tagihan</strong> jika ingin
+                                    faktur muncul di bulan lain.
                                 </p>
-                                <div>
-                                    <button
-                                        string="Reset Export (Tampilkan Ulang di Tab Siap Export)"
-                                        name="action_reset_exported"
-                                        type="object"
-                                        class="btn-warning"
-                                        confirm="Yakin ingin mereset status export faktur yang ditampilkan?"/>
+
+                                <field name="invoice_line_ids" nolabel="1">
+                                    <tree string="Faktur Siap Export"
+                                          editable="bottom"
+                                          decoration-muted="not selected">
+                                        <field name="selected"       string="Export?"/>
+                                        <field name="number"         string="No. Faktur"    readonly="1"/>
+                                        <field name="partner_id"     string="Customer"      readonly="1"/>
+                                        <field name="date_invoice"   string="Tgl. Faktur"   readonly="1"/>
+                                        <field name="billing_period" string="Periode Tagihan"/>
+                                        <field name="amount_untaxed" string="DPP"   widget="monetary" readonly="1"/>
+                                        <field name="amount_tax"     string="PPN"   widget="monetary" readonly="1"/>
+                                        <field name="amount_total"   string="Total" widget="monetary" readonly="1"/>
+                                        <field name="state"          string="Status"        readonly="1"/>
+                                        <field name="currency_id"    invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <!-- TAB 2: SUDAH DIEXPORT -->
+                            <page string="Sudah Diexport">
+                                <div style="margin-bottom:10px;">
+                                    <button string="Pilih Faktur untuk Direset"
+                                            name="action_open_reset_wizard"
+                                            type="object"
+                                            class="btn-warning"/>
                                 </div>
                                 <field name="exported_invoice_ids" readonly="1" nolabel="1">
                                     <tree string="Faktur Sudah Diexport">
-                                        <field name="number" string="No. Faktur"/>
-                                        <field name="partner_id" string="Customer"/>
-                                        <field name="date_invoice" string="Tgl. Faktur"/>
-                                        <field name="date_efaktur_exported"
-                                               string="Tgl. Export"/>
-                                        <field name="amount_untaxed"
-                                               string="DPP"
-                                               widget="monetary"/>
-                                        <field name="amount_tax"
-                                               string="PPN"
-                                               widget="monetary"/>
-                                        <field name="amount_total"
-                                               string="Total"
-                                               widget="monetary"/>
-                                        <field name="state" string="Status"/>
+                                        <field name="number"                 string="No. Faktur"/>
+                                        <field name="partner_id"             string="Customer"/>
+                                        <field name="date_invoice"           string="Tgl. Faktur"/>
+                                        <field name="coretax_billing_period" string="Periode Tagihan"/>
+                                        <field name="date_coretax_exported"  string="Tgl. Export"/>
+                                        <field name="amount_untaxed"         string="DPP"   widget="monetary"/>
+                                        <field name="amount_tax"             string="PPN"   widget="monetary"/>
+                                        <field name="amount_total"           string="Total" widget="monetary"/>
+                                        <field name="state"                  string="Status"/>
                                     </tree>
                                 </field>
-                            </page> -->
+                            </page>
 
                         </notebook>
                     </sheet>
@@ -132,7 +120,7 @@
             </field>
         </record>
 
-        <!-- ==================== ACTION ==================== -->
+        <!-- ACTION -->
         <record id="act_open_export_coretax_main" model="ir.actions.act_window">
             <field name="name">Export Faktur Pajak Coretax</field>
             <field name="type">ir.actions.act_window</field>
