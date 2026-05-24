@@ -152,6 +152,21 @@ class ExportCoretaxWizard(models.TransientModel):
         for line in self.invoice_line_ids:
             if line.billing_period:
                 line.invoice_id.write({'coretax_billing_period': line.billing_period})
+        return self.action_search()
+    
+
+    @api.multi
+    def action_select_all(self):
+        if not self.invoice_line_ids:
+            raise UserError("Tidak ada faktur. Lakukan pencarian dulu.")
+        self.invoice_line_ids.write({'selected': True})
+        return self._reopen_form()
+
+    @api.multi
+    def action_unselect_all(self):
+        if not self.invoice_line_ids:
+            raise UserError("Tidak ada faktur. Lakukan pencarian dulu.")
+        self.invoice_line_ids.write({'selected': False})
         return self._reopen_form()
 
     @api.multi

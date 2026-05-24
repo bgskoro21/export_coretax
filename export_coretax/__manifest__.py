@@ -18,6 +18,7 @@
         'views/export_coretax_views.xml',
         'views/res_partner_views.xml',
         'views/uom_views.xml',
+        'views/pph_coretax_views.xml',
         'views/menu.xml',
     ],
     'demo': [

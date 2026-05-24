@@ -55,15 +55,17 @@ class CoretaxResetWizard(models.TransientModel):
 
         selected_invoices.write({
             'is_coretax_exported': False,
-            'date_coretax_exported': False,
+            'date_coretax_exported': False
         })
 
         parent = self.env['export_coretax.export_efaktur'].browse(self.parent_wizard_id)
         if parent.exists():
             parent.write({
-                'invoice_ids': [(4, inv.id) for inv in selected_invoices],
                 'exported_invoice_ids': [(3, inv.id) for inv in selected_invoices],
             })
             parent.env.cr.commit()
+
+            # ← KUNCI: tutup popup dulu, lalu re-search di parent
+            return parent.action_search()
 
         return {'type': 'ir.actions.act_window_close'}

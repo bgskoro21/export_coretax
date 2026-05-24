@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_mhs_pph_export_coretax_inherit" model="ir.ui.view">
+        <field name="name">mhs.pph.form.coretax.inherit</field>
+        <field name="model">mhs.pph</field>
+        <field name="inherit_id" ref="mhs_efaktur.view_mhs_pph_export"/>
+        <field name="arch" type="xml">
+
+            <!-- Tambah kolom Periode Tagihan setelah date_invoice -->
+            <xpath expr="//field[@name='invoice_ids']//field[@name='date_invoice']" position="after">
+                <field name="coretax_billing_period" string="Tgl. Lapor Pajak"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
