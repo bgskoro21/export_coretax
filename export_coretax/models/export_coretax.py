@@ -266,7 +266,7 @@ class ExportCoretaxWizard(models.TransientModel):
                                else npwp_buyer + '000000')
 
         tax_invoice = ET.SubElement(parent, 'TaxInvoice')
-        ET.SubElement(tax_invoice, 'TaxInvoiceDate').text    = inv.date_invoice or ''
+        ET.SubElement(tax_invoice, 'TaxInvoiceDate').text    = inv.coretax_billing_period or inv.date_invoice
         ET.SubElement(tax_invoice, 'TaxInvoiceOpt').text     = 'Normal'
         ET.SubElement(tax_invoice, 'TrxCode').text           = '04'
         ET.SubElement(tax_invoice, 'AddInfo')
