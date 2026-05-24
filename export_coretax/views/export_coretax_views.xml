@@ -73,6 +73,18 @@
                                     faktur muncul di bulan lain.
                                 </p>
 
+                                <div style="margin-bottom:8px;">
+                                    <button string="✔ Centang Semua"
+                                            name="action_select_all"
+                                            type="object"
+                                            class="btn-default"
+                                            style="margin-right:6px;"/>
+                                    <button string="✘ Hapus Semua Centang"
+                                            name="action_unselect_all"
+                                            type="object"
+                                            class="btn-default"/>
+                                </div>
+
                                 <field name="invoice_line_ids" nolabel="1">
                                     <tree string="Faktur Siap Export"
                                           editable="bottom"
@@ -81,7 +93,7 @@
                                         <field name="number"         string="No. Faktur"    readonly="1"/>
                                         <field name="partner_id"     string="Customer"      readonly="1"/>
                                         <field name="date_invoice"   string="Tgl. Faktur"   readonly="1"/>
-                                        <field name="billing_period" string="Periode Tagihan"/>
+                                        <field name="billing_period" string="Tgl. Lapor Pajak"/>
                                         <field name="amount_untaxed" string="DPP"   widget="monetary" readonly="1"/>
                                         <field name="amount_tax"     string="PPN"   widget="monetary" readonly="1"/>
                                         <field name="amount_total"   string="Total" widget="monetary" readonly="1"/>
@@ -104,7 +116,7 @@
                                         <field name="number"                 string="No. Faktur"/>
                                         <field name="partner_id"             string="Customer"/>
                                         <field name="date_invoice"           string="Tgl. Faktur"/>
-                                        <field name="coretax_billing_period" string="Periode Tagihan"/>
+                                        <field name="coretax_billing_period" string="Tgl. Lapor Pajak"/>
                                         <field name="date_coretax_exported"  string="Tgl. Export"/>
                                         <field name="amount_untaxed"         string="DPP"   widget="monetary"/>
                                         <field name="amount_tax"             string="PPN"   widget="monetary"/>
