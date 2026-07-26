@@ -36,7 +36,8 @@ class ExportCoretaxInvoiceLine(models.TransientModel):
     number      = fields.Char(related='invoice_id.number',        string='No. Faktur',  readonly=True)
     partner_id  = fields.Many2one('res.partner', related='invoice_id.partner_id', string='Customer', readonly=True)
     date_invoice= fields.Date(related='invoice_id.date_invoice',  string='Tgl. Faktur', readonly=True)
-    amount_untaxed = fields.Monetary(related='invoice_id.amount_untaxed', string='DPP',   readonly=True)
+    amount_dpp = fields.Monetary(related='invoice_id.amount_dpp', string='AMOUNT DPP',   readonly=True)
+    amount_untaxed = fields.Monetary(related='invoice_id.amount_untaxed', string='AMOUNT UNTAXED',   readonly=True)
     amount_tax     = fields.Monetary(related='invoice_id.amount_tax',     string='PPN',   readonly=True)
     amount_total   = fields.Monetary(related='invoice_id.amount_total',   string='Total', readonly=True)
     currency_id    = fields.Many2one('res.currency', related='invoice_id.currency_id', readonly=True)
@@ -299,7 +300,7 @@ class ExportCoretaxWizard(models.TransientModel):
         tax_rate       = sum(tax.amount for tax in line.invoice_line_tax_ids)
         tax_base       = float_round(subtotal, 2)
         total_discount = float_round(price_unit * quantity * (discount / 100.0), 2)
-        other_tax_base = float_round(tax_base * 11.0 / 12.0, 2)
+        other_tax_base = float_round(line.price_dpp, 2)
         vat            = float_round(tax_base * (tax_rate / 100.0), 2)
         uom_code       = line.uom_id.l10n_id_coretax_uom_code or 'UM.0001'
 
@@ -309,7 +310,7 @@ class ExportCoretaxWizard(models.TransientModel):
         ET.SubElement(gs, 'Name').text         = line.product_id.name or ''
         ET.SubElement(gs, 'Unit').text         = uom_code
         ET.SubElement(gs, 'Price').text        = '%.2f' % price
-        ET.SubElement(gs, 'Qty').text          = str(int(quantity))
+        ET.SubElement(gs, 'Qty').text          = '%.2f' % quantity   # <-- diubah
         ET.SubElement(gs, 'TotalDiscount').text= '%.2f' % total_discount
         ET.SubElement(gs, 'TaxBase').text      = '%.2f' % tax_base
         ET.SubElement(gs, 'OtherTaxBase').text = '%.2f' % other_tax_base
