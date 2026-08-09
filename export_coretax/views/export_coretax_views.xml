@@ -94,6 +94,7 @@
                                         <field name="partner_id"     string="Customer"      readonly="1"/>
                                         <field name="date_invoice"   string="Tgl. Faktur"   readonly="1"/>
                                         <field name="billing_period" string="Tgl. Lapor Pajak"/>
+                                        <field name="price_subtotal_signed" string="DPP"   widget="monetary" readonly="1"/>
                                         <field name="amount_dpp" string="AMOUNT DPP"   widget="monetary" readonly="1"/>
                                         <field name="amount_untaxed" string="AMOUNT UNTAXED"   widget="monetary" readonly="1"/>
                                         <field name="amount_tax"     string="PPN"   widget="monetary" readonly="1"/>
