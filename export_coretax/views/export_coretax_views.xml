@@ -94,9 +94,7 @@
                                         <field name="partner_id"     string="Customer"      readonly="1"/>
                                         <field name="date_invoice"   string="Tgl. Faktur"   readonly="1"/>
                                         <field name="billing_period" string="Tgl. Lapor Pajak"/>
-                                        <field name="price_subtotal_signed" string="DPP"   widget="monetary" readonly="1"/>
-                                        <field name="amount_dpp" string="AMOUNT DPP"   widget="monetary" readonly="1"/>
-                                        <field name="amount_untaxed" string="AMOUNT UNTAXED"   widget="monetary" readonly="1"/>
+                                        <field name="amount_untaxed" string="DPP"   widget="monetary" readonly="1"/>
                                         <field name="amount_tax"     string="PPN"   widget="monetary" readonly="1"/>
                                         <field name="amount_total"   string="Total" widget="monetary" readonly="1"/>
                                         <field name="state"          string="Status"        readonly="1"/>
@@ -120,8 +118,7 @@
                                         <field name="date_invoice"           string="Tgl. Faktur"/>
                                         <field name="coretax_billing_period" string="Tgl. Lapor Pajak"/>
                                         <field name="date_coretax_exported"  string="Tgl. Export"/>
-                                        <field name="amount_dpp"         string="AMOUNT DPP"   widget="monetary"/>
-                                        <field name="amount_untaxed"         string="AMOUNT UNTAXED"   widget="monetary"/>
+                                        <field name="amount_untaxed"         string="DPP"   widget="monetary"/>
                                         <field name="amount_tax"             string="PPN"   widget="monetary"/>
                                         <field name="amount_total"           string="Total" widget="monetary"/>
                                         <field name="state"                  string="Status"/>
