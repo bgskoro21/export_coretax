@@ -11,7 +11,7 @@
     'website': "http://www.yourcompany.com",
     'category': 'Accounting',
     'version': '0.1',
-    'depends': ['base', 'account', 'mhs_efaktur', 'mhs_coretax'],
+    'depends': ['base', 'account', 'mhs_efaktur'],
     'data': [
         'wizards/pk_coretax_views.xml',
         'views/reset_wizard_views.xml',
