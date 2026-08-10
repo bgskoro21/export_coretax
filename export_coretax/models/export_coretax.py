@@ -301,11 +301,11 @@ class ExportCoretaxWizard(models.TransientModel):
         total_discount = float_round(price_unit * quantity * (discount / 100.0), 2)
         other_tax_base = float_round(tax_base * 11.0 / 12.0, 2)
         vat            = float_round(tax_base * (tax_rate / 100.0), 2)
-        uom_code       = line.uom_id.l10n_id_coretax_uom_code or 'UM.0001'
+        uom_code       = line.uom_id.l10n_id_coretax_uom_code or 'UM.0033'
 
         gs = ET.SubElement(parent, 'GoodService')
         ET.SubElement(gs, 'Opt').text          = 'B'
-        ET.SubElement(gs, 'Code').text         = '120100'
+        ET.SubElement(gs, 'Code').text         = '000000'
         ET.SubElement(gs, 'Name').text         = line.product_id.name or ''
         ET.SubElement(gs, 'Unit').text         = uom_code
         ET.SubElement(gs, 'Price').text        = '%.2f' % price
