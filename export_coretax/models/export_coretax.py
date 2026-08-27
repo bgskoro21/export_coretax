@@ -291,6 +291,7 @@ class ExportCoretaxWizard(models.TransientModel):
         price_unit = line.price_unit or 0.0
         quantity   = line.quantity   or 0.0
         discount   = line.discount   or 0.0
+        first_subtotal = price_unit * quantity
 
         price_after_discount = price_unit * (1 - discount / 100.0)
         price    = float_round(price_after_discount / 1.11, 2)
@@ -300,7 +301,7 @@ class ExportCoretaxWizard(models.TransientModel):
         tax_base       = float_round(subtotal, 2)
         total_discount = float_round(price_unit * quantity * (discount / 100.0), 2)
         other_tax_base = float_round(tax_base * 11.0 / 12.0, 2)
-        vat            = float_round(tax_base * (tax_rate / 100.0), 2)
+        vat            = float_round(first_subtotal - tax_base, 2)
         uom_code       = line.uom_id.l10n_id_coretax_uom_code or 'UM.0033'
 
         gs = ET.SubElement(parent, 'GoodService')
